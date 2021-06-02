@@ -1,0 +1,28 @@
+<ngx-spinner></ngx-spinner>
+
+<div style="text-align: center;">
+    <button style="cursor: pointer;" (click)="agregar()">+</button>
+</div>
+
+<div class="box" *ngIf="index != null">
+
+    <form class="item" #f="ngForm" (ngSubmit)="f.form.valid && guardarPersona()">
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control"
+            [(ngModel)]="nombreInput">
+
+        <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="form-control"
+            [(ngModel)]="apellidoInput">
+
+        <button type="submit" style="cursor: pointer;">+</button>
+        <button class="buttonRed" *ngIf="index != null" type="submit" style="cursor: pointer;" (click)="eliminarPersona()">-</button>
+    </form>
+
+</div>
+
+<router-outlet></router-outlet>
+
+<div class="box">
+    <app-persona *ngFor="let persona of personas" [persona]="persona" [index]="personas.indexOf(persona)" (click)="llenarForm(personas.indexOf(persona))"></app-persona>
+</div>
+
+<mat-progress-spinner></mat-progress-spinner>
